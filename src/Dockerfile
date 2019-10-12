@@ -35,14 +35,13 @@ RUN set -eux                                                                && \
 COPY requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
 
-## Install faster pillow version ( with SIMD support)
+## Install faster pillow version (with SIMD support)
 RUN pip uninstall -y pillow                                                 && \
         CC="cc ${GCC_ARCH_OPTS}" pip install -U --force-reinstall              \
         pillow-simd==6.0.0.post0
 
 # Support arbitrary user IDs
 ENTRYPOINT ["arbitrary-uid.sh"]
-
 COPY arbitrary-uid.sh /usr/local/bin/
 
 WORKDIR ${HOME}/workspace

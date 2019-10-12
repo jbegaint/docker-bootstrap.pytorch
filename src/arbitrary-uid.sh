@@ -2,7 +2,7 @@
 set -e
 
 if [ $# -eq 0 ]; then
-	cmd=("/bin/bash") # default command
+    cmd=("/bin/bash") # default command
 else
 	cmd=("$@")
 fi
@@ -24,7 +24,7 @@ if [ "${USER_UID}" != "65535" ] && [ "${USER_GID}" != "65535" ]; then
 fi
 
 # Fix home permission
-chown -R ${USER_UID}:${USER_GID} /home/${USER}
+chown -R ${USER_UID}:${USER_GID} /home/bootstrap
 
 # Drop root and execute command
 exec gosu ${USER_UID}:${USER_GID} "${cmd[@]}"
