@@ -17,10 +17,9 @@ ENV USER=bootstrap
 ENV GROUP=bootstrap
 ENV HOME=/home/${USER}
 
-RUN mkdir -p ${HOME}
-RUN groupadd -r ${GROUP} -g ${GID}                                          && \
+RUN mkdir -p ${HOME}/workspace                                              && \
+    groupadd -r ${GROUP} -g ${GID}                                          && \
     useradd -r -u ${UID} -g ${GID} -d ${HOME} -s /sbin/nologin ${USER}      && \
-    mkdir -p ${HOME}/workspace                                              && \
     chown -R ${USER}:${GROUP} ${HOME}
 
 # Install required system packages
